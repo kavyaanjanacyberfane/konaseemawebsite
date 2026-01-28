@@ -12,10 +12,10 @@
 
       <!-- CENTER : OPTIONS -->
       <div class="header-center">
-        <button class="mode-btn">
+        <NuxtLink to="/orderPage" class="mode-btn">
           <img src="/images/delivery.svg" alt="Delivery" />
           Delivery
-        </button>
+        </NuxtLink>
 
         <button class="mode-btn">
           <img src="/images/dining.svg" alt="Dining" />
@@ -124,7 +124,6 @@ import { Icon } from "@iconify/vue";
   height: 22px;
   cursor: pointer;
 }
-
 
 /* RIGHT */
 .header-right {
