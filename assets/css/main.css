@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700;800&display=swap');
+
+:root {
+  --text: #323643;
+  --accent: #0B653E;
+  --button-shadow: #09451640;
+  --footer-bg: #89BD9780;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 16px;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 38px;
+  border-radius:25px;
+  /* margin-top: 10px; */
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px var(--button-shadow);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px var(--button-shadow);
+}
+
+/* Outline Button */
+.btn-outline {
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  padding: 13px 24px;
+  border-radius: 14px;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 8px 20px var(--button-shadow);
+}
+
+@media (max-width: 768px) {
+  .btn-primary {
+  background: var(--accent);
+  color: #fff;
+  width:160px;
+
+}
+}
