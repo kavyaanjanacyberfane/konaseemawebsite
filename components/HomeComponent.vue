@@ -1,6 +1,4 @@
 <template>
-
-  
   <!-- Categories section -->
   <section id="doctors" class="doctors-section">
     <div class="container">
@@ -10,14 +8,18 @@
       </div>
 
       <div class="doctors-grid">
-        <div v-for="doctor in doctors" :key="doctor.id" class="doctor-card">
+        <div
+          v-for="category in categoriess"
+          :key="category.id"
+          class="doctor-card"
+        >
           <NuxtImg
-            :src="doctor.image"
-            :alt="doctor.name"
+            :src="category.image"
+            :alt="category.name"
             class="doctor-image"
             format="webp"
           />
-          <h3>{{ doctor.name }}</h3>
+          <h3>{{ category.name }}</h3>
         </div>
       </div>
     </div>
@@ -39,25 +41,31 @@
 
         <!-- RIGHT COLUMN : REVIEWS -->
         <div class="testimonial-right">
-          <div class="review-card">
-            <img src="/images/swetha.jpg" alt="user" class="review-avatar" />
-            <div class="review-info">
-              <span class="review-name">Deepika Choudary</span>
-              <div>
-              <span class="review-role">Food Enthusiast</span>
-
+          <div class="review-main">
+            <div class="review-card">
+              <img src="/images/swetha.png" alt="user" class="review-avatar" />
+              <div class="review-info">
+                <span class="review-name">Deepika Choudary</span>
+                <div>
+                  <span class="review-role">Food Enthusiast</span>
+                </div>
+                <div class="stars">★★★★★ <span>4.8</span></div>
               </div>
-              <div class="stars">★★★★★ <span>4.8</span></div>
             </div>
-          </div>
 
-          <span class="our-review" style="font-weight: 500;text-align: start;">Our Reviews</span>
+            <!-- NEW WRAPPER -->
+            <div class="review-summary">
+              <span class="our-review" style="font-weight: 600"
+                >Our Reviews</span
+              >
 
-          <div class="review-users">
-            <img src="/images/swetha.jpg" alt="user" />
-            <img src="/images/swetha.jpg" alt="user" />
-            <img src="/images/swetha.jpg" alt="user" />
-            <div class="more-users">+12</div>
+              <div class="review-users">
+                <img src="/images/Ellipse 8.png" />
+                <img src="/images/Ellipse 9.png" />
+                <img src="/images/Ellipse 10.png" />
+                <div class="more-users">+12</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -74,12 +82,6 @@
   <!-- Download app section -->
   <section class="app-section">
     <div class="container app-layout">
-      <div class="app-image">
-        <div class="image-ring">
-          <NuxtImg src="/images/appimg.png" alt="App" format="webp" />
-        </div>
-      </div>
-
       <div class="app-content">
         <h3 class="section-subtitle">DOWNLOAD APP</h3>
         <h1 class="section-title">Get Started With Konaseema App Today</h1>
@@ -89,27 +91,34 @@
           quickly.
         </p>
 
-        <button class="btn-primary">Get The App</button>
+        <button class="btn-primary" style="margin-bottom: 10px">
+          Get The App
+        </button>
+      </div>
+
+      <div class="app-image">
+        <div class="image-ring">
+          <NuxtImg src="/images/appimg.webp" alt="App" format="webp" />
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-const doctors = [
-  { id: 1, name: "Soup", image: "/images/soup.png" },
-  { id: 2, name: "Starter", image: "/images/soup.png" },
-  { id: 3, name: "Biryani", image: "/images/soup.png" },
-  { id: 4, name: "Pulao", image: "/images/soup.png" },
-  { id: 5, name: "Noodles", image: "/images/soup.png" },
-  { id: 6, name: "Fried Rice", image: "/images/soup.png" },
-  { id: 7, name: "Mocktails", image: "/images/soup.png" },
-  { id: 8, name: "Curries", image: "/images/soup.png" },
+const categoriess = [
+  { id: 1, name: "Soup", image: "/images/biryani.jpg" },
+  { id: 2, name: "Starter", image: "/images/biryani.jpg" },
+  { id: 3, name: "Biryani", image: "/images/biryani.jpg" },
+  { id: 4, name: "Pulao", image: "/images/biryani.jpg" },
+  { id: 5, name: "Noodles", image: "/images/biryani.jpg" },
+  { id: 6, name: "Fried Rice", image: "/images/biryani.jpg" },
+  { id: 7, name: "Mocktails", image: "/images/biryani.jpg" },
+  { id: 8, name: "Curries", image: "/images/biryani.jpg" },
 ];
 </script>
 
 <style scoped>
-
 /* =========================
    COMMON
 ========================= */
@@ -163,9 +172,19 @@ const doctors = [
 }
 
 .testimonial-right {
+  width: 100%;
+}
+.review-main {
+  display: flex;
+  justify-content: space-between; /* 🔥 KEY LINE */
+  align-items: center;
+  width: 100%;
+}
+
+.review-summary {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
 }
 
 .review-card {
@@ -181,7 +200,7 @@ const doctors = [
   object-fit: cover;
 }
 
-.review-name{
+.review-name {
   font-weight: 600;
 }
 
@@ -248,6 +267,8 @@ const doctors = [
   object-fit: cover;
   border-radius: 16px;
   border: 1px solid #e5e5e5;
+  box-shadow: 0 0 35px rgba(21, 144, 56, 0.28);
+  transition: all 0.3s ease;
 }
 
 .doctor-card h3 {
@@ -261,16 +282,34 @@ const doctors = [
 ========================= */
 .app-section {
   margin: 78px;
-  padding: 32px;
+  padding: 32px 32px 0px 32px;
   background: #89bd9780;
   border-radius: 20px;
 }
 
+/* =========================
+   APP SECTION - Fix bottom space for image
+========================= */
 .app-layout {
+  /* keep existing styles */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
-  align-items: center;
+
+  /* MODIFIED: stretch items vertically to remove bottom space */
+  align-items: stretch;
+}
+
+/* Ensure app-image and image-ring fill full height */
+.app-image,
+.image-ring {
+  height: 100%;
+}
+
+.image-ring img {
+  width: 100%;
+  height: 100%; /* fill container height */
+  object-fit: cover; /* cover container fully */
 }
 
 /* =========================
@@ -285,10 +324,10 @@ const doctors = [
     text-align: center;
   }
 
-  .testimonial-image,
+  /* .testimonial-image,
   .app-image {
     order: -1;
-  }
+  } */
 
   .section-title {
     font-size: 32px;
@@ -297,13 +336,15 @@ const doctors = [
 
 /* Mobile */
 @media (max-width: 768px) {
-  .testimonial-section{
+  .testimonial-section {
     padding: 0 20px;
   }
 
   .app-section {
     margin: 40px 20px;
-    padding: 24px;
+  }
+  .app-image {
+    order: 2;
   }
 
   .section-title {
@@ -318,6 +359,22 @@ const doctors = [
     width: 180px;
     height: 180px;
   }
+  .review-main {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .review-summary {
+    align-items: center;
+  }
+  .review-users {
+    justify-content: center;
+  }
+
+  .our-review {
+    text-align: center;
+  }
 }
 
 /* Small mobile */
@@ -325,7 +382,6 @@ const doctors = [
   .section-title {
     font-size: 24px;
   }
-
 
   .review-card {
     flex-direction: column;
@@ -335,9 +391,8 @@ const doctors = [
   .review-users {
     justify-content: center;
   }
-  .our-review{
-    text-align: center!important;
-
+  .our-review {
+    text-align: center !important;
   }
 }
 /* =========================
@@ -351,62 +406,59 @@ const doctors = [
 
 @media (max-width: 700px) {
   .doctors-grid {
-gap:20px;  }
+    gap: 20px;
+  }
 }
 @media (max-width: 675px) {
   /* .doctors-grid {
     grid-template-columns: repeat(2, 1fr);
 
     }  */
-    .doctor-image {
-  width: 150px;
-  height: 150px;
-    }
-   }
-
+  .doctor-image {
+    width: 150px;
+    height: 150px;
+  }
+}
 
 @media (max-width: 521px) {
   .doctors-grid {
- gap:10px;  }
-
+    gap: 10px;
+  }
 }
 
 @media (max-width: 596px) {
   .doctors-grid {
     grid-template-columns: repeat(2, 1fr);
-    } 
-        .doctor-image {
-  width: 180px;
-  height: 180px;
-    }
-    
   }
+  .doctor-image {
+    width: 180px;
+    height: 180px;
+  }
+}
 @media (max-width: 500px) {
   .doctors-grid {
     grid-template-columns: repeat(2, 1fr);
-    } 
-        .doctor-image {
-  width: 150px;
-  height: 150px;
-    }
-    
   }
-
-  @media (max-width: 450px) {
-        .doctor-image {
-  width: 130px;
-  height: 130px;
-    }
-    
+  .doctor-image {
+    width: 150px;
+    height: 150px;
   }
+}
 
-  @media (max-width: 380px) {
+@media (max-width: 450px) {
+  .doctor-image {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 380px) {
   .doctors-grid {
     grid-template-columns: 1fr;
-    } 
-            .doctor-image {
-  width: 200px;
-  height: 200px;
-    }
   }
+  .doctor-image {
+    width: 200px;
+    height: 200px;
+  }
+}
 </style>

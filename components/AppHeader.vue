@@ -12,7 +12,7 @@
 
       <!-- CENTER : OPTIONS -->
       <div class="header-center">
-        <NuxtLink to="/orderPage" class="mode-btn">
+        <NuxtLink to="/orderPage" class="mode-btn" active-class="active">
           <img src="/images/delivery.svg" alt="Delivery" />
           Delivery
         </NuxtLink>
@@ -52,6 +52,9 @@ import { Icon } from "@iconify/vue";
 
 <style scoped>
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
@@ -107,8 +110,27 @@ import { Icon } from "@iconify/vue";
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
+/* Hover */
+.mode-btn:hover {
+  background: #ffedd5; /* light orange */
+  color: #c2410c;
+  border-color: #fdba74;
+}
+
+/* Active / Selected */
+.mode-btn.active {
+  background: #FF7F50; /* dark orange */
+  color: #000;
+  border-color: #ea580c;
+}
+
+/* Icon color follows text */
 .mode-btn img {
   width: 18px;
   height: 18px;

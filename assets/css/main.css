@@ -13,11 +13,17 @@
   padding: 0;
 }
 
-html,
-body {
+html, body {
+  height: 100%;
   overflow-x: hidden;
+  overflow-y: auto; /* allow window scrolling */
 }
 
+main {
+  /* Ensure main doesn't clip or scroll itself */
+  overflow: visible;
+  min-height: 100vh;
+}
 
 body {
   font-family: 'Inter', sans-serif;
@@ -93,3 +99,14 @@ h5 {
 
 }
 }
+
+/* HIDE SCROLLBAR BUT KEEP SCROLLING */
+.no-scrollbar {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari */
+}
+
