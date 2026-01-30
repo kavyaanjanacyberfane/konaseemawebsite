@@ -1,10 +1,14 @@
 <template>
   <footer class="footer">
+     <!-- CENTER LOGO -->
+    <div class="footer-logo-wrapper">
+      <img src="/logo.png" alt="Konaseema Ghumaghumalu" />
+    </div>
+    
     <div class="container footer-grid">
       <!-- LEFT -->
       <div class="footer-brand">
         <h2>Konaseema Ghumaghumalu</h2>
-        <img src="/logo.png" alt="Konaseema Ghumaghumalu" />
         <p>
           Authentic Andhra flavors in the heart of KPHB, Hyderabad. Experience
           traditional coastal cuisine with a modern touch.
@@ -84,13 +88,51 @@ import { Icon } from "@iconify/vue";
 <style scoped>
 .footer {
   background: var(--footer-bg);
+  position: relative;
+  padding-top: 10px; /* space for semi circle */
+  box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.10);
 }
+
+/* Logo wrapper */
+.footer-logo-wrapper {
+  position: absolute;
+  top: -0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.footer-logo-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 60px;
+  background: var(--footer-bg);
+
+  /* 👇 THIS is the fix */
+  border-radius: 120px 120px 0 0;
+  top: 18px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+    box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.10);
+
+}
+
+
+/* Logo */
+.footer-logo-wrapper img {
+  height: 95px;
+  display: block;
+}
+
+
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr repeat(5, 1fr);
   gap: 40px;
-  padding: 40px 0;
+  padding: 50px 0;
 }
 
 /* LEFT */
