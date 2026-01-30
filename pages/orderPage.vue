@@ -364,6 +364,8 @@ const summary = [
 <style scoped>
 .order-page {
   padding: 40px 0;
+    line-height: 1.7;
+
 }
 
 /* BANNER */

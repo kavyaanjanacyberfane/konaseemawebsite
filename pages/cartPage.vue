@@ -8,6 +8,13 @@
         <!-- ITEMS -->
         <div class="cart-items">
           <div v-for="item in cart" :key="item.id" class="cart-item">
+            <!-- FAVORITE -->
+            <button class="cart-fav-btn" @click="item.fav = !item.fav">
+              <Icon
+                :icon="item.fav ? 'mdi:heart' : 'mdi:heart-outline'"
+                :color="item.fav ? '#e11d48' : '#9ca3af'"
+              />
+            </button>
             <img :src="item.image" />
 
             <div class="cart-info">
@@ -15,9 +22,9 @@
               <p>{{ item.desc }}</p>
 
               <div class="price-row">
-                <span class="price">₹{{ item.price }}</span>
-                <span class="muted">
-                  (₹{{ item.price }} × {{ item.qty }})
+                <span class="main-price">₹{{ item.price }}</span>
+                <span class="qtn-price">
+                  (₹{{ item.price }} × {{ item.qty }} Quantity)
                 </span>
               </div>
             </div>
@@ -82,7 +89,7 @@
               </p>
               <button class="link-btn" style="margin-top: 10px">Change</button>
             </div>
-            <Icon icon="mingcute:location-fill" class="sum-icon" />
+            <img src="/images/location.png" alt="Location" class="sum-icon" />
           </div>
 
           <!-- PROMO -->
@@ -93,25 +100,29 @@
 
               <div class="promo-input">
                 <input type="text" placeholder="Promo Code" />
-                <button class="link-btn">Apply</button>
+                <button class="apply-btn">Apply</button>
               </div>
             </div>
-            <Icon icon="system-uicons:ticket" class="sumt-icon" />
+            <img src="/images/ticket.png" alt="Ticket" class="sumt-icon" />
           </div>
 
           <!-- PRICE -->
           <div class="price-summary">
             <div>
-              <span style="font-size: 15px;font-weight: 500;">Subtotal</span>
-              <span style="font-size: 15px;font-weight: 600;">₹{{ subtotal }}</span>
+              <span style="font-size: 15px; font-weight: 500">Subtotal</span>
+              <span style="font-size: 15px; font-weight: 600"
+                >₹{{ subtotal }}</span
+              >
             </div>
             <div>
-               <span style="font-size: 15px;font-weight: 500;">Tax & Fees</span>
-               <span style="font-size: 15px;font-weight: 600;">₹{{ tax }}</span>
+              <span style="font-size: 15px; font-weight: 500">Tax & Fees</span>
+              <span style="font-size: 15px; font-weight: 600">₹{{ tax }}</span>
             </div>
             <div>
-             <span style="font-size: 15px;font-weight: 500;">Delivery</span>
-               <span style="font-size: 15px;font-weight: 600;">₹{{ delivery }}</span>
+              <span style="font-size: 15px; font-weight: 500">Delivery</span>
+              <span style="font-size: 15px; font-weight: 600"
+                >₹{{ delivery }}</span
+              >
             </div>
 
             <hr />
@@ -166,6 +177,7 @@ const total = computed(() => subtotal.value + tax.value + delivery);
 <style scoped>
 .cart-page {
   padding: 40px 0;
+  line-height: 1.7;
 }
 
 .cart-layout {
@@ -183,6 +195,10 @@ const total = computed(() => subtotal.value + tax.value + delivery);
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  max-height: 65vh; /*  controls visible height */
+  overflow-y: auto; /*  enables scroll */
+  padding-right: 6px; /* prevents content cut */
 }
 
 .cart-item {
@@ -192,6 +208,31 @@ const total = computed(() => subtotal.value + tax.value + delivery);
   border-radius: 16px;
   border: 1px solid #e5e7eb;
 }
+
+.cart-item {
+  position: relative; /* 🔥 needed for absolute heart */
+}
+
+/* FAVORITE BUTTON */
+.cart-fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
 
 .cart-item img {
   width: 200px;
@@ -208,8 +249,19 @@ const total = computed(() => subtotal.value + tax.value + delivery);
 }
 
 .price-row {
-  margin-top: 6px;
+  margin-top: 26px;
   font-size: 14px;
+}
+.main-price {
+  font-weight: 600;
+  font-size: 15px;
+  color: #418855;
+}
+
+.qtn-price {
+  font-size: 14px;
+  color: #418855;
+  padding-left: 6px;
 }
 
 .cart-actions {
@@ -235,6 +287,7 @@ const total = computed(() => subtotal.value + tax.value + delivery);
   border-radius: 12px;
   padding: 10px;
   border: 1px solid #d1d5db;
+  font-family: Inter, sans-serif;
 }
 
 .delivery-footer {
@@ -264,7 +317,11 @@ const total = computed(() => subtotal.value + tax.value + delivery);
 .promo-box {
   display: flex;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 26px;
+}
+
+.promo-box {
+  padding-top: 26px;
 }
 
 .address-box h4 {
@@ -284,13 +341,15 @@ const total = computed(() => subtotal.value + tax.value + delivery);
 }
 
 .sum-icon {
+  width: 80px;
+  height: auto;
   color: #bed9c5;
-  font-size: 150px;
 }
 
 .sumt-icon {
+  width: 80px;
+  height: auto;
   color: #bed9c5;
-  font-size: 100px;
 }
 
 .promo-box h4 {
@@ -305,9 +364,31 @@ const total = computed(() => subtotal.value + tax.value + delivery);
 }
 
 .promo-input {
-  display: flex;
-  gap: 8px;
+  position: relative;
   margin-top: 8px;
+}
+
+.promo-input input {
+  width: 100%;
+  padding: 12px 90px 12px 14px; /* space for button */
+  border-radius: 30px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.apply-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #5fa974;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .link-btn {
@@ -332,8 +413,7 @@ const total = computed(() => subtotal.value + tax.value + delivery);
   display: flex;
   justify-content: space-between;
   margin: 6px 0;
-    line-height: 1.9;
-
+  line-height: 1.9;
 }
 
 .total {
@@ -375,6 +455,18 @@ const total = computed(() => subtotal.value + tax.value + delivery);
 @media (max-width: 1024px) {
   .cart-layout {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 764px) {
+  .sum-icon {
+    width: 90px;
+    height: auto;
+    color: #bed9c5;
+  }
+
+  .sumt-icon {
+    width: 80px;
+    height: auto;
   }
 }
 </style>
