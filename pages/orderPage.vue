@@ -365,6 +365,8 @@ const summary = [
 .order-page {
   padding: 40px 0;
     line-height: 1.7;
+      margin-bottom: 78px;
+
 
 }
 

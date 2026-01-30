@@ -155,7 +155,7 @@ const categoriess = [
    TESTIMONIAL SECTION
 ========================= */
 .testimonial-section {
-  padding: 60px 78px;
+  padding: 80px 78px;
   overflow-x: hidden;
 }
 
@@ -281,7 +281,7 @@ const categoriess = [
    APP SECTION
 ========================= */
 .app-section {
-  margin: 78px;
+  margin: 78px 78px 158px 78px;
   padding: 32px 32px 0px 32px;
   background: #89bd9780;
   border-radius: 20px;
@@ -337,12 +337,12 @@ const categoriess = [
 /* Mobile */
 @media (max-width: 768px) {
   .testimonial-section {
-    padding: 0 20px;
+    padding: 20px 20px;
   }
 
-  .app-section {
+  /* .app-section {
     margin: 40px 20px;
-  }
+  } */
   .app-image {
     order: 2;
   }

@@ -305,7 +305,7 @@
    TEAM SECTION (FIGMA MATCH)
 ========================= */
 .team-section {
-  padding: 40px 0;
+  padding: 40px 80px 80px 80px;
   line-height: 1.7;
     margin-bottom: 20px;
 

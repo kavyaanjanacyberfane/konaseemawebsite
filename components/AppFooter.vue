@@ -133,6 +133,7 @@ import { Icon } from "@iconify/vue";
   grid-template-columns: 1.5fr repeat(5, 1fr);
   gap: 40px;
   padding: 50px 0;
+  margin-top: 50px;
 }
 
 /* LEFT */

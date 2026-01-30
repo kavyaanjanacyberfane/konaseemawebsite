@@ -178,6 +178,8 @@ const total = computed(() => subtotal.value + tax.value + delivery);
 .cart-page {
   padding: 40px 0;
   line-height: 1.7;
+        margin-bottom: 78px;
+
 }
 
 .cart-layout {
